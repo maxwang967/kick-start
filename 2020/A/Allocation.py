@@ -28,7 +28,7 @@ Test set 2
 Sample
 
 Input
- 	
+
 Output
  
 3
