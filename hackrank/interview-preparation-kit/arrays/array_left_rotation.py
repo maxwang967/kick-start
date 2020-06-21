@@ -12,30 +12,27 @@ import sys
 os.environ['OUTPUT_PATH'] = 'output.txt'
 
 
-# Complete the hourglassSum function below.
-def hourglassSum(arr):
-    # i = 0, 1, 2, 3
-    # j = 0, 1, 2, 3
-    sum_array = [0 for _ in range(16)]
-    idx = 0
-    for i in range(4):
-        for j in range(4):
-            sum_array[idx] = arr[i][j] + arr[i][j + 1] + arr[i][j + 2] + arr[i + 1][j + 1] + arr[i + 2][j + 1] + \
-                             arr[i + 2][j] + arr[i + 2][j + 2]
-            idx += 1
-    return max(sum_array)
+# Complete the rotLeft function below.
+def rotLeft(a, d):
+    tail = a[:d]
+    head = a[d:]
+    return head + tail
 
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    arr = []
+    nd = input().split()
 
-    for _ in range(6):
-        arr.append(list(map(int, input().rstrip().split())))
+    n = int(nd[0])
 
-    result = hourglassSum(arr)
+    d = int(nd[1])
 
-    fptr.write(str(result) + '\n')
+    a = list(map(int, input().rstrip().split()))
+
+    result = rotLeft(a, d)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
 
     fptr.close()

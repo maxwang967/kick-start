@@ -13,27 +13,35 @@ from copy import deepcopy
 os.environ['OUTPUT_PATH'] = 'output.txt'
 
 
-# Complete the minimumBribes function below.
-def minimumBribes(q):
-    bribes = 0
-    for idx in range(len(q)):
-        if q[idx] - (idx + 1) > 2:
-            print("Too chaotic")
-            return
-        else:
-            for j in range(max(0, q[idx] - 2), idx):
-                if q[j] > q[idx]:
-                    bribes += 1
-    print(bribes)
-    return
+# Complete the minimumSwaps function below.
+def minimumSwaps(arr):
+    swaps = 0
+    n = len(arr)
+    locations = {}
+    for idx in range(n):
+        locations[arr[idx]] = idx
+    for i in range(n):
+        if arr[i] == i + 1:
+            continue
+        j = locations[i + 1]
+        swaps += 1
+        t = arr[i]
+        arr[i] = arr[j]
+        arr[j] = t
+        locations[arr[i]] = i
+        locations[arr[j]] = j
+    return swaps
 
 
 if __name__ == '__main__':
-    t = int(input())
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    for t_itr in range(t):
-        n = int(input())
+    n = int(input())
 
-        q = list(map(int, input().rstrip().split()))
+    arr = list(map(int, input().rstrip().split()))
 
-        minimumBribes(q)
+    res = minimumSwaps(arr)
+
+    fptr.write(str(res) + '\n')
+
+    fptr.close()

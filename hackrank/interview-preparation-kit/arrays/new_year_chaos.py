@@ -8,31 +8,32 @@ import os
 import random
 import re
 import sys
+from copy import deepcopy
 
 os.environ['OUTPUT_PATH'] = 'output.txt'
 
 
-# Complete the rotLeft function below.
-def rotLeft(a, d):
-    tail = a[:d]
-    head = a[d:]
-    return head + tail
+# Complete the minimumBribes function below.
+def minimumBribes(q):
+    bribes = 0
+    for idx in range(len(q)):
+        if q[idx] - (idx + 1) > 2:
+            print("Too chaotic")
+            return
+        else:
+            for j in range(max(0, q[idx] - 2), idx):
+                if q[j] > q[idx]:
+                    bribes += 1
+    print(bribes)
+    return
 
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+    t = int(input())
 
-    nd = input().split()
+    for t_itr in range(t):
+        n = int(input())
 
-    n = int(nd[0])
+        q = list(map(int, input().rstrip().split()))
 
-    d = int(nd[1])
-
-    a = list(map(int, input().rstrip().split()))
-
-    result = rotLeft(a, d)
-
-    fptr.write(' '.join(map(str, result)))
-    fptr.write('\n')
-
-    fptr.close()
+        minimumBribes(q)
