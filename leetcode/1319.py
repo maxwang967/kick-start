@@ -22,8 +22,6 @@ class Solution:
             return -1
         ds = DisjointSet(n)
         count = 0
-        for i, edge in enumerate(connections):
-            edge.append(i)
         for edge in connections:
             ds.merge(edge[0], edge[1])
         for i in range(n):
