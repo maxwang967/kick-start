@@ -1,62 +1,47 @@
-# 并查集模板
-class UnionFind:
-    def __init__(self, n: int):
-        self.parent = list(range(n))
-        self.size = [1] * n
-        self.n = n
-        # 当前连通分量数目
-        self.setCount = n
+class DisjointSet:
+
+    def __init__(self, n):
+        self.fa = [x for x in range(n)]
+        self.count = n
     
-    def findset(self, x: int) -> int:
-        if self.parent[x] == x:
+    def get(self, x: int):
+        if x == self.fa[x]:
             return x
-        self.parent[x] = self.findset(self.parent[x])
-        return self.parent[x]
+        self.fa[x] = self.get(self.fa[x])
+        return self.fa[x]
     
-    def unite(self, x: int, y: int) -> bool:
-        x, y = self.findset(x), self.findset(y)
-        if x == y:
+    def merge(self, x, y):
+        if self.get(x) == self.get(y):
             return False
-        if self.size[x] < self.size[y]:
-            x, y = y, x
-        self.parent[y] = x
-        self.size[x] += self.size[y]
-        self.setCount -= 1
+        self.fa[self.get(x)] = self.get(y)
+        self.count -= 1
         return True
-    
-    def connected(self, x: int, y: int) -> bool:
-        x, y = self.findset(x), self.findset(y)
-        return x == y
 
 class Solution:
     def maxNumEdgesToRemove(self, n: int, edges: List[List[int]]) -> int:
-        ufa, ufb = UnionFind(n), UnionFind(n)
-        ans = 0
+        alice = DisjointSet(n)
+        bob = DisjointSet(n)
+        result = 0
+        for e in edges:
+            e[1] -= 1
+            e[2] -= 1
         
-        # 节点编号改为从 0 开始
-        for edge in edges:
-            edge[1] -= 1
-            edge[2] -= 1
-
-        # 公共边
-        for t, u, v in edges:
-            if t == 3:
-                if not ufa.unite(u, v):
-                    ans += 1
+        for e in edges:
+            if e[0] == 3:
+                if not alice.merge(e[1], e[2]):
+                    result += 1
                 else:
-                    ufb.unite(u, v)
-
-        # 独占边
-        for t, u, v in edges:
-            if t == 1:
-                # Alice 独占边
-                if not ufa.unite(u, v):
-                    ans += 1
-            elif t == 2:
-                # Bob 独占边
-                if not ufb.unite(u, v):
-                    ans += 1
-
-        if ufa.setCount != 1 or ufb.setCount != 1:
+                    bob.merge(e[1], e[2])
+        
+        for e in edges:
+            if e[0] == 1:
+                if not alice.merge(e[1], e[2]):
+                    result += 1
+            elif e[0] == 2:
+                if not bob.merge(e[1], e[2]):
+                    result += 1
+        # impossible case
+        if alice.count != 1 or bob.count != 1:
             return -1
-        return ans
+        
+        return result
