@@ -126,13 +126,6 @@ I want to kick out all these problems in 10 - 15 days.
 - [ ] Kth Smallest Number in a Sorted Matrix
 - [ ] Smallest Number Range
 
-### 0/1 Knapsack (Dynamic Programming)
-
-- [ ] 0/1 Knapsack 
-- [ ] Equal Subset Sum Partition 
-- [ ] Subset Sum
-- [ ] Minimum Subset Sum Difference
-
 ### Topological sort (graph)
 
 - [ ] Topological Sort
