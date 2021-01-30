@@ -3,7 +3,7 @@ class Solution:
         if len(nums) == 0:
             return 0
         memo = {
-            0: -1
+            0: 0
         }
         m_sum = 0
         result = 0
@@ -11,7 +11,7 @@ class Solution:
             m_sum += nums[i]
             if memo.get(m_sum - k) is not None:
                 end_index = memo[m_sum - k]
-                result = max(result, i - end_index)
+                result = max(result, i + 1 - end_index)
             if memo.get(m_sum) is None:
-                memo[m_sum] = i
+                memo[m_sum] = i + 1
         return result
