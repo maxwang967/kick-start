@@ -14,7 +14,7 @@ I want to kick out all these problems in 10 - 15 days.
 
 ### Sliding window
 
-- [ ] Maximum Sum Subarray of Size K
+- [X] Maximum Sum Subarray of Size K
 - [ ] Smallest Subarray with a given sum
 - [ ] Longest Substring with K Distinct Characters
 - [ ] Fruits into Baskets
