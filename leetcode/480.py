@@ -1,6 +1,17 @@
 import bisect
 
 class Solution:
+    def find(self, a, value):
+        lo = 0
+        hi = len(a)
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if a[mid] < value:
+                lo = mid + 1
+            else:
+                hi = mid
+        return lo
+
     def medianSlidingWindow(self, nums: List[int], k: int) -> List[float]:
         # 1 classic
         # l = len(nums)
@@ -36,7 +47,9 @@ class Solution:
         a.sort()
         result = [median(a)]
         for i, j in zip(nums[:-k], nums[k:]):
-            a.pop(bisect.bisect_left(a, i))
-            a.insert(bisect.bisect_left(a, j), j)
+            # a.pop(bisect.bisect_left(a, i))
+            # a.insert(bisect.bisect_left(a, j), j)
+            a.pop(self.find(a, i))
+            a.insert(self.find(a, j), j)            
             result.append(median(a))
         return result
