@@ -17,3 +17,6 @@ Not quite sure. This repo will only be updated when I find some interesting solu
 ### Greedy
 
 - [X] 455. Assign Cookies
+
+- [X] 135. Candy
+
