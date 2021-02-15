@@ -10,7 +10,7 @@ Not quite sure. This repo will only be updated when I find some interesting solu
 
 ## What is the current plan?
 
-- Daily Challenge EVERYDAY.
+- [ X ] Daily Challenge EVERYDAY.
 
 - [ ] LCOF.
 
