@@ -10,13 +10,7 @@ Not quite sure. This repo will only be updated when I find some interesting solu
 
 ## What is the current plan?
 
-1. Daily Challenge EVERYDAY.
+- Daily Challenge EVERYDAY.
 
-2. Roadmap as the following:
-
-### Greedy
-
-- [X] 455. Assign Cookies
-
-- [X] 135. Candy
+- [] LCOF.
 
