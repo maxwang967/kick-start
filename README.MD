@@ -12,5 +12,5 @@ Not quite sure. This repo will only be updated when I find some interesting solu
 
 - Daily Challenge EVERYDAY.
 
-- [] LCOF.
+- [ ] LCOF.
 
