@@ -7,6 +7,33 @@
 #         self.next = None
 class Solution:
     def GetNext(self, pNode):
+        if pNode is None:
+            return None
+        pNext = None
+        if pNode.right is not None:
+            node = pNode.right
+            while node.left is not None:
+                node = node.left
+            pNext = node
+        elif pNode.next is not None:
+            pCurrent = pNode
+            pParent = pNode.next
+            while pParent is not None and pCurrent == pParent.right:
+                pCurrent = pParent
+                pParent = pParent.next
+            pNext = pParent
+        return pNext
+
+
+# -*- coding:utf-8 -*-
+# class TreeLinkNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+#         self.next = None
+class Solution:
+    def GetNext(self, pNode):
         # write code here
         if pNode.right:#有右子树
             p=pNode.right
