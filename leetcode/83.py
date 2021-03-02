@@ -16,4 +16,6 @@ class Solution:
                 cur = cur.next
             previous.next = cur
             previous = cur
+        del cur
+        del previous
         return head
